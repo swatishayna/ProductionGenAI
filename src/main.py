@@ -1,12 +1,19 @@
 import os
 from contextlib import asynccontextmanager
+import logging
 
 from fastapi import FastAPI
 import uvicorn
 
+#setup logging
+logging.basicConfig(
+    level = logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s  - %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 @asynccontextmanager
-def lifespan(app: FastAPI):
+async def lifespan(app: FastAPI):
     """asynccontextmanager is a decorator from Python's contextlib module 
     that converts an async generator function into an asynchronous 
     context manager. Code before yield is executed when entering the context 
@@ -15,9 +22,16 @@ def lifespan(app: FastAPI):
     shared resources such as databases, vector stores, 
     and LLM clients during startup and release them during application shutdown."""
     
+    logger.info("Starting RAG API")
+    
     print("Start")
-    yield "Do Something"
+    
+    logger.infor("API System Ready")
+    yield 
+    
     print("Cleanup")
+    logger.info("API shutdown complete")
+    
     
 app = FastAPI(
     title = "Research Paper Curator System",
