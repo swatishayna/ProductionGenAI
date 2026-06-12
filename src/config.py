@@ -17,7 +17,7 @@ class Settings(DefaultSettings):
     app_version: str = "0.1.0"
     debug: bool = True
     environment:str = "dev"
-    service_name: str = "RAG"
+    service_name: str = "RAG-PROD"
     
     #Postgres config
     postgres_database_url: str = "postgresql://prod_rag:prodrag_password@localhost:5002/prodrag_db"
@@ -26,7 +26,7 @@ class Settings(DefaultSettings):
     postgres_max_overflow: int = 0
     
     # OpenSearch configuration
-    opensearch_host: str = "http://localhost:9200"
+    opensearch_host: str = "http://localhost:9002"
     
     # Ollama configuration
     ollama_host: str = "http://localhost:11434"
